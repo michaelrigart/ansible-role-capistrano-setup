@@ -7,7 +7,6 @@
   with_items: capistrano_setup_users
   when: capistrano_setup_users is defined
 
-
 - name: create users
   user:
     name: '{{ item.username }}'
