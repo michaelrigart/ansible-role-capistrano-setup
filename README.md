@@ -1,6 +1,6 @@
 Ansible Capistrano setup Role
 =============================
-[![Build Status](https://travis-ci.org/michaelrigart/ansible-role-capistrano-setup.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-capistrano-setup)
+[![Build Status](https://semaphoreci.com/api/v1/projects/3ee476e3-13e0-47db-b8ea-4fd2f76c91d7/459435/badge.svg)](https://semaphoreci.com/michaelrigart/ansible-role-capistrano-setup) [![Build Status](https://travis-ci.org/michaelrigart/ansible-role-capistrano-setup.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-capistrano-setup)
 
 An ansible role for creating the default project structure when using Capistrano as your application deployment tool.
 This role will create a new system user / group for your deployment as well as set the default application structure for
