@@ -30,6 +30,7 @@
 - name: generate timestamp for initial release
   shell: date +'%Y%m%d%H%M%S'
   register: release_time
+  changed_when: False
 
 - name: check which projects are active
   stat:
