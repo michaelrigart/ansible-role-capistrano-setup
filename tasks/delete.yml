@@ -5,4 +5,4 @@
     name: '{{ item.name }}'
     remove: '{{ item.remove }}'
     state: absent
-  with_items: capistrano_setup_users_deleted
+  with_items: '{{ capistrano_setup_users_deleted }}'

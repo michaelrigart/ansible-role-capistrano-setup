@@ -4,8 +4,7 @@
   group:
     name: '{{ item.username }}'
     gid: '{{ item.uid }}'
-  with_items: capistrano_setup_users
-  when: capistrano_setup_users is defined
+  with_items: '{{ capistrano_setup_users | default([]) }}'
 
 - name: create users
   user:
@@ -19,9 +18,7 @@
     createhome: '{{ item.createhomedir }}'
     password: '{{ item.password }}'
     update_password: '{{ item.update_password }}'
-  with_items: capistrano_setup_users
-  when: capistrano_setup_users is defined
-
+  with_items: '{{ capistrano_setup_users | default([]) }}'
 
 - name: create .ssh directory
   file:
@@ -30,8 +27,8 @@
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 0750
-  with_items: capistrano_setup_users
-  when: capistrano_setup_users is defined and item.createhomedir and item.upload_key
+  with_items: '{{ capistrano_setup_users | default([]) }}'
+  when: item.createhomedir and item.upload_key
 
 - name: upload ssh keys
   copy:
@@ -40,6 +37,6 @@
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 0640
-  with_items: capistrano_setup_users
-  when: capistrano_setup_users is defined and item.createhomedir and item.upload_key
+  with_items: '{{ capistrano_setup_users | default([]) }}'
+  when: item.createhomedir and item.upload_key
 

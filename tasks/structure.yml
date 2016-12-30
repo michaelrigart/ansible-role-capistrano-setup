@@ -7,7 +7,7 @@
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 0755
-  with_items: capistrano_setup_users
+  with_items: '{{ capistrano_setup_users }}'
 
 - name: create capistrano releases directory
   file:
@@ -16,7 +16,7 @@
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 0755
-  with_items: capistrano_setup_users
+  with_items: '{{ capistrano_setup_users }}'
 
 - name: create capistrano shared directory
   file:
@@ -25,7 +25,7 @@
     owner: '{{ item.username }}'
     group: '{{ item.username }}'
     mode: 0755
-  with_items: capistrano_setup_users
+  with_items: '{{ capistrano_setup_users }}'
 
 - name: generate timestamp for initial release
   shell: date +'%Y%m%d%H%M%S'
@@ -35,7 +35,7 @@
 - name: check which projects are active
   stat:
     path: '{{ item.home }}/{{ item.project_directory }}/current'
-  with_items: capistrano_setup_users
+  with_items: '{{ capistrano_setup_users }}'
   register: active_projects
 
 - name: create initial release
@@ -45,7 +45,7 @@
     owner: '{{ item.1.username }}'
     group: '{{ item.1.username }}'
     mode: 0755
-  with_indexed_items: capistrano_setup_users
+  with_indexed_items: '{{ capistrano_setup_users }}'
   when: 'active_projects.results[{{item.0}}].stat.exists == false'
 
 - name: set current symlink to initial release
@@ -55,7 +55,7 @@
     state: link
     owner: '{{ item.1.username }}'
     group: '{{ item.1.username }}'
-  with_indexed_items: capistrano_setup_users
+  with_indexed_items: '{{ capistrano_setup_users }}'
   when: active_projects.results[{{item.0}}].stat.exists == false
 
 - name: upload placeholder page
@@ -65,5 +65,5 @@
     owner: '{{ item.1.username }}'
     group: '{{ item.1.username }}'
     mode:
-  with_indexed_items: capistrano_setup_users
+  with_indexed_items: '{{ capistrano_setup_users }}'
   when: active_projects.results[{{item.0}}].stat.exists == false and item.1.placeholder is defined

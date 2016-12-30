@@ -6,7 +6,7 @@ galaxy_info:
                Capistrano and put a placeholder page in an initial release.
   company: Netronix.be
   license: GPLv3
-  min_ansible_version: 1.8
+  min_ansible_version: 2.2
   platforms:
     - name: Ubuntu
       versions:
